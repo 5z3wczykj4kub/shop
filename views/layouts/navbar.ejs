@@ -10,27 +10,52 @@
   </button>
 </nav>
 <div class="sidedrawer">
-  <ul class="sidedrawer__list">
-    <li>
-      <a class="sidedrawer__link" href="/"
-        ><i class="fas fa-home sidedrawer__icon"></i>HOMEPAGE</a
-      >
-    </li>
-    <li>
-      <a class="sidedrawer__link" href="/cart"
-        ><i class="fas fa-shopping-cart sidedrawer__icon"></i>GO TO CART</a
-      >
-    </li>
-    <li>
-      <a class="sidedrawer__link" href="/add-product"
-        ><i class="fas fa-plus sidedrawer__icon"></i>ADD PRODUCT</a
-      >
-    </li>
-    <li>
-      <a class="sidedrawer__link" href="/delete-product"
-        ><i class="fas fa-trash-alt sidedrawer__icon"></i>DELETE PRODUCT</a
-      >
-    </li>
-  </ul>
+  <div class="sidebar-left">
+    <ul class="sidedrawer__list">
+      <li>
+        <a class="sidedrawer__link" href="/"
+          ><i class="fas fa-home sidedrawer__icon"></i>HOMEPAGE</a
+        >
+      </li>
+      <li>
+        <a class="sidedrawer__link" href="/cart"
+          ><i class="fas fa-shopping-cart sidedrawer__icon"></i>GO TO CART</a
+        >
+      </li>
+      <li>
+        <a class="sidedrawer__link" href="/add-product"
+          ><i class="fas fa-plus sidedrawer__icon"></i>ADD PRODUCT</a
+        >
+      </li>
+      <li>
+        <a class="sidedrawer__link" href="/delete-product"
+          ><i class="fas fa-trash-alt sidedrawer__icon"></i>DELETE PRODUCT</a
+        >
+      </li>
+    </ul>
+    <div class="sidedrawer__sign-in">
+      <p class="sidedrawer__link">
+        <i class="fas fa-sign-in-alt sidedrawer__icon"></i>SIGN IN
+      </p>
+    </div>
+  </div>
+  <div class="sidebar-right">
+    <p class="sidebar-right__sign-in-text">
+      <i class="fas fa-user-shield sidedrawer__icon"></i>ADMIN PANEL
+    </p>
+    <p class="sidebar-right__sign-in-info">
+      Login as an administrator to manage the shop inventory
+    </p>
+    <form>
+      <input id="email" type="email" placeholder="E-Mail" />
+      <input id="password" type="password" placeholder="Password" />
+      <button class="login-button">Login</button>
+      <p class="sidebar-right__register">Don't have an account yet?</p>
+      <p class="sidebar-right__register"><a href="">Register now</a></p>
+    </form>
+    <p class="sidedrawer__link">
+      <i class="fas fa-arrow-left sidedrawer__icon"></i>GO BACK
+    </p>
+  </div>
 </div>
 <div class="backdrop"></div>

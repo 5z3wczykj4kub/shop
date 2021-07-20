@@ -1,5 +1,11 @@
 const burger = document.querySelector('.navbar__burger');
 const sidedrawer = document.querySelector('.sidedrawer');
+const sidedrawerSignIn = document.querySelector('.sidedrawer__sign-in p');
+const sidedrawerGoBack = document.querySelector(
+  '.sidebar-right .sidedrawer__link'
+);
+const sidebarLeft = document.querySelector('.sidebar-left');
+const sidebarRight = document.querySelector('.sidebar-right');
 const backdrop = document.querySelector('.backdrop');
 const goToCartLink = document.querySelector('.sidedrawer__link[href="/cart"]');
 
@@ -12,6 +18,16 @@ burger.addEventListener('click', () => {
   sidedrawer.classList.toggle('active');
   backdrop.classList.toggle('active');
   changeBodyOverflow();
+});
+
+sidedrawerSignIn.addEventListener('click', () => {
+  sidebarLeft.classList.add('active');
+  sidebarRight.classList.add('active');
+});
+
+sidedrawerGoBack.addEventListener('click', () => {
+  sidebarLeft.classList.remove('active');
+  sidebarRight.classList.remove('active');
 });
 
 backdrop.addEventListener('click', () => {
