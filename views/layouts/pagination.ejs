@@ -1,0 +1,16 @@
+<div class="pagination">
+  <% if (pageNumber > 1) { %>
+  <a class="pagination__prev" href="<%= baseURL %>?page=<%= pageNumber - 1 %>"
+    ><i class="fas fa-chevron-left"></i
+  ></a>
+  <% if (nextPage) { %>
+  <span class="pagination__page-number"><%= pageNumber %></span>
+  <a class="pagination__next" href="<%= baseURL %>?page=<%= pageNumber + 1 %>"
+    ><i class="fas fa-chevron-right"></i
+  ></a>
+  <% } %> <% } else { %> <% if (nextPage) { %>
+  <a class="pagination__next" href="<%= baseURL %>?page=2"
+    ><i class="fas fa-chevron-right"></i
+  ></a>
+  <% } %> <% } %>
+</div>

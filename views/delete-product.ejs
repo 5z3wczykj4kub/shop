@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+    <script src="/js/navbar.js" defer></script>
+    <script src="/js/delete-product.js" defer></script>
+    <title>OnlineSzop - delete</title>
+  </head>
+  <body>
+    <%- include('layouts/navbar') %> <% if (!products.length > 0) { %>
+    <p class="welcome-text">No products where found</p>
+    <% } else { %>
+    <p class="welcome-text">Delete products</p>
+    <div class="product-card__container">
+      <% products.forEach(product => { %>
+      <div class="product-card">
+        <p class="product-card__name"><%= product.name %></p>
+        <% if (!product.imageName) { %>
+        <img class="product-card__image" src="/images/no-image.png" />
+        <% } else { %>
+        <img
+          class="product-card__image"
+          src="/uploads/<%= product.imageName %>"
+        />
+        <% } %>
+        <p class="product-card__added-date">
+          <%= product.addedDate.toLocaleString('pl-PL') %>
+        </p>
+        <p class="product-card__description"><%= product.description %></p>
+        <div class="product-card__delete-product">
+          <p class="product-card__price">$<%= product.price.toFixed(2) %></p>
+          <form action="/delete-product" method="post">
+            <input type="hidden" name="product-id" value="<%= product._id %>" />
+            <input type="hidden" name="page-number" value="<%= pageNumber %>" />
+            <input
+              type="hidden"
+              name="products-length"
+              value="<%= products.length %>"
+            />
+            <% if (product.imageName) { %>
+            <input
+              type="hidden"
+              name="product-image-name"
+              value="<%= product.imageName %>"
+            />
+            <% } %>
+            <button class="product-card__delete-product__button" type="submit">
+              Delete
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <%- include('layouts/pagination', { baseURL: '/delete-product' }) %> <% } %>
+  </body>
+</html>

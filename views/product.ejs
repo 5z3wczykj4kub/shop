@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+    <script src="/js/navbar.js" defer></script>
+    <script src="/js/product.js" defer></script>
+    <title>OnlineSzop - <%= product.name.toLowerCase() %></title>
+  </head>
+  <body>
+    <%- include('layouts/navbar') %>
+    <p class="welcome-text">View product</p>
+    <div class="product-view">
+      <header class="product-view__header">
+        <p class="product-view__name"><%= product.name %></p>
+        <p class="product-view__added-date">
+          <%= product.addedDate.toLocaleString('pl-PL') %>
+        </p>
+      </header>
+      <p class="product-view__price">$<%= product.price %></p>
+      <p class="product-view__description"><%= product.description %></p>
+      <% if (product.imageName) { %>
+      <img
+        class="product-view__image"
+        src="/uploads/<%= product.imageName %>"
+      />
+      <% } else { %>
+      <img class="product-view__no-image" src="/images/no-image.png" />
+      <% } %>
+      <div class="product-view__controls">
+        <p class="product-view__controls__settings">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </p>
+        <button
+          class="product-view__controls__add-to-cart-button"
+          type="button"
+          data-product-id="<%= product._id %>"
+        >
+          Add to
+          <i class="fas fa-shopping-cart"></i>
+        </button>
+        <div class="product-view__controls__settings__backdrop"></div>
+        <div class="product-view__controls__settings__modal">
+          <div class="product-view__controls__settings__modal__header">
+            <p>Settings</p>
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="product-view__controls__settings__modal__body">
+            <div>
+              <div>
+                <p>Edit</p>
+                <p
+                  class="
+                    product-view__controls__settings__modal__body__setting-description
+                  "
+                >
+                  Change product data
+                </p>
+              </div>
+              <a
+                class="
+                  product-view__controls__settings__modal__body__edit-button
+                "
+                href="/edit-product/<%= product._id %>"
+              >
+                Edit <i class="fas fa-edit"></i>
+              </a>
+            </div>
+            <div>
+              <div>
+                <p>Delete</p>
+                <p
+                  class="
+                    product-view__controls__settings__modal__body__setting-description
+                  "
+                >
+                  Remove product
+                </p>
+              </div>
+              <form action="/delete-product" method="post">
+                <input
+                  type="hidden"
+                  name="product-id"
+                  value="<%= product._id %>"
+                />
+                <input
+                  type="hidden"
+                  name="product-image-name"
+                  value="<%= product.imageName %>"
+                />
+                <button
+                  class="
+                    product-view__controls__settings__modal__body__delete-button
+                  "
+                >
+                  Delete <i class="fas fa-trash-alt"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

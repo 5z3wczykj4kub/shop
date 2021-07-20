@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+    <script src="/js/navbar.js" defer></script>
+    <script src="/js/add-product.js" defer></script>
+    <title>OnlineSzop - add</title>
+  </head>
+  <body>
+    <%- include('layouts/navbar') %>
+    <p class="welcome-text">Add a product</p>
+    <form
+      class="add-product-form"
+      action="add-product"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input
+        type="text"
+        name="product-name"
+        id="product-name"
+        placeholder="Product name"
+        required
+      />
+      <textarea
+        name="product-description"
+        id="product-description"
+        placeholder="Product description"
+        required
+      ></textarea>
+      <input
+        type="number"
+        name="product-price"
+        id="product-price"
+        placeholder="Product price"
+        step="0.01"
+        min="0.01"
+        max="1000000"
+        required
+      />
+      <div class="product-image">
+        <button class="product-image__button" type="button">
+          <label class="product-image__label" for="product-image"
+            >Add image<i id="product-image__icon" class="fas fa-images"></i
+          ></label>
+        </button>
+        <input
+          type="file"
+          accept="image/jpeg,image/png"
+          name="product-image"
+          id="product-image"
+        />
+        <span class="product-image__file-name">No file chosen</span>
+      </div>
+      <div class="add-product-form__buttons">
+        <a class="add-product-form__buttons__cancel" href="/">
+          Cancel
+          <i
+            id="add-product-form__buttons__cancel-icon"
+            class="fas fa-undo"
+          ></i>
+        </a>
+        <button class="add-product-form__buttons__submit" type="submit">
+          Submit
+          <i
+            id="add-product-form__buttons__submit-icon"
+            class="fas fa-paper-plane"
+          ></i>
+        </button>
+      </div>
+    </form>
+  </body>
+</html>

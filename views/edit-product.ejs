@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+    <script src="/js/navbar.js" defer></script>
+    <script src="/js/edit-product.js" defer></script>
+    <title>OnlineSzop - edit</title>
+  </head>
+  <body>
+    <%- include('layouts/navbar') %>
+    <p class="welcome-text">Edit product</p>
+    <div class="product-view">
+      <form action="/edit-product" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="product-id" value="<%= product._id %>" />
+        <header class="product-view__header">
+          <input
+            id="edit-product-name"
+            class="product-view__name"
+            type="text"
+            name="product-name"
+            value="<%= product.name %>"
+            placeholder="Product name"
+            required
+          />
+        </header>
+        <input
+          id="edit-product-price"
+          class="product-view__price"
+          type="number"
+          name="product-price"
+          value="<%= product.price %>"
+          placeholder="Product price"
+          step="0.01"
+          min="0.01"
+          max="1000000"
+          required
+        />
+        <textarea
+          id="edit-product-description"
+          class="product-view__description"
+          name="product-description"
+          placeholder="Product description"
+          required
+        >
+<%= product.description %></textarea
+        >
+        <div class="product-image">
+          <button class="product-image__button" type="button">
+            <label class="product-image__label" for="edit-product-image"
+              >Change image<i id="product-image__icon" class="fas fa-images"></i
+            ></label>
+          </button>
+          <input
+            type="file"
+            accept="image/jpeg,image/png"
+            id="edit-product-image"
+            name="product-image"
+          />
+          <span class="product-image__file-name">No file chosen</span>
+        </div>
+        <% if (product.imageName) { %>
+        <img
+          class="product-view__image"
+          src="/uploads/<%= product.imageName %>"
+        />
+        <input
+          type="hidden"
+          name="prev-product-image"
+          value="<%= product.imageName %>"
+        />
+        <% } else { %>
+        <img
+          class="product-view__image product-view__no-image"
+          src="/images/no-image.png"
+        />
+        <% } %>
+        <div class="product-view__controls">
+          <a
+            id="edit-product-cancel"
+            class="product-view__controls__settings"
+            href="/product/<%= product._id %>"
+          >
+            <span>Cancel</span>
+            <i class="fas fa-undo-alt"></i>
+          </a>
+          <button
+            id="edit-product-submit-button"
+            class="product-view__controls__add-to-cart-button"
+          >
+            Save
+            <i class="fas fa-check"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

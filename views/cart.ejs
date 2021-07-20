@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+    <script src="/js/navbar.js" defer></script>
+    <script src="/js/cart.js" defer></script>
+    <title>OnlineSzop - cart</title>
+  </head>
+  <body>
+    <%- include('layouts/navbar') %> <% if (products.length > 0) { %>
+    <p class="welcome-text">Cart</p>
+    <div class="cart">
+      <% products.forEach(product => { %>
+      <label class="cart__item">
+        <div class="cart__item__details__outer">
+          <div class="cart__item__details__outer__checkbox__container">
+            <input
+              id="cart__item__details__outer__checkbox"
+              type="checkbox"
+              value="<%= product._id %>"
+              autocomplete="off"
+            />
+          </div>
+          <div class="cart__item__details__inner">
+            <p class="cart__item__details__inner__product-name">
+              <%= product.name %>
+            </p>
+            <p class="cart__item__details__inner__product-description">
+              <%= product.description %>
+            </p>
+            <p class="cart__item__details__inner__product-price">
+              $<%= product.price %>
+            </p>
+          </div>
+        </div>
+        <% if (product.imageName) { %>
+        <img class="cart__item__image" src="/uploads/<%= product.imageName%>" />
+        <% } else { %>
+        <img class="cart__item__image" src="/images/no-image.png" />
+        <% } %>
+      </label>
+      <% }) %>
+      <p class="cart__controls">
+        <span class="cart__controls__select">Select all</span>
+        <span class="cart__controls__delete">Delete selected</span>
+      </p>
+    </div>
+    <% } else { %>
+    <p class="welcome-text">No products where added to cart</p>
+    <% } %>
+  </body>
+</html>
